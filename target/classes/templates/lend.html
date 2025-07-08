@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lend Book - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Lend a Book</h2>
+    <form th:action="@{/lend-book}" method="post">
+        <label for="isbn">Book ISBN:</label>
+        <select id="isbn" name="isbn" required>
+            <option th:each="book : ${books}" th:value="${book.isbn}" th:text="${book.title + ' (' + book.isbn + ')'}"></option>
+        </select>
+        <button type="submit">Lend Book</button>
+    </form>
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+    <div th:if="${lendDate}">
+        <div class="alert alert-info">
+            Lend Date: <span th:text="${lendDate}"></span><br/>
+            Return Deadline: <span th:text="${returnDeadline}"></span><br/>
+            Lend Fee: £<span th:text="${lendFee}"></span>
+        </div>
+    </div>
+    <div th:if="${error == 'No copies left for this book.'}">
+        <div class="alert alert-warning">No copies left for this book. Please try another title.</div>
+    </div>
+    <h3>Available Books</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Copies</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.isbn}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.year}"></td>
+                <td th:text="${book.copies}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Your Borrowed Books</h3>
+    <table th:if="${!#lists.isEmpty(lendedBooks)}">
+        <thead>
+            <tr>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${lendedBooks}">
+                <td th:text="${book.isbn}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.year}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div th:if="${#lists.isEmpty(lendedBooks)}">
+        <p>You have no borrowed books.</p>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 

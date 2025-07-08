@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Welcome to the Student Portal</h2>
+    <p>Use the navigation above to access your courses, enrolments, profile, and graduation status.</p>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 

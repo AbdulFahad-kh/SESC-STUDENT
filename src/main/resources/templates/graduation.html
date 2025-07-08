@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Graduation - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Graduation Eligibility</h2>
+    <div th:if="${eligible}">
+        <p>Congratulations! You are eligible to graduate.</p>
+    </div>
+    <div th:unless="${eligible}">
+        <p>You are not eligible to graduate. Please ensure all invoices are paid.</p>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 

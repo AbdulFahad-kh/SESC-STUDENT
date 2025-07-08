@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Outstanding Invoices - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Outstanding Invoices</h2>
+    <div th:if="${#lists.isEmpty(invoices)}">
+        <p>No outstanding invoices found.</p>
+    </div>
+    <table th:if="${!#lists.isEmpty(invoices)}">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="invoice : ${invoices}">
+                <td th:text="${invoice.reference}"></td>
+                <td th:text="${invoice.type}"></td>
+                <td th:text="${invoice.amount}"></td>
+                <td th:text="${invoice.dueDate}"></td>
+                <td th:text="${invoice.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 

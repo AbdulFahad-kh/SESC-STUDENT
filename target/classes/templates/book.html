@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Details - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Book Details</h2>
+    <div th:if="${book}">
+        <p><strong>ISBN:</strong> <span th:text="${book.isbn}"></span></p>
+        <p><strong>Title:</strong> <span th:text="${book.title}"></span></p>
+        <p><strong>Author:</strong> <span th:text="${book.author}"></span></p>
+        <p><strong>Year:</strong> <span th:text="${book.year}"></span></p>
+        <p><strong>Copies Available:</strong> <span th:text="${book.copies}"></span></p>
+    </div>
+    <div th:if="${book == null}">
+        <p>Book not found.</p>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 

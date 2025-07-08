@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Profile - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Edit Profile</h2>
+    <form th:action="@{/profile}" method="post">
+        <div>
+            <label>First Name:</label>
+            <input type="text" name="firstName" th:value="${student.firstName}"/>
+        </div>
+        <div>
+            <label>Last Name:</label>
+            <input type="text" name="lastName" th:value="${student.lastName}"/>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 

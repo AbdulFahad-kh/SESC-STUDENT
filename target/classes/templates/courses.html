@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <title>Courses - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Courses</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Credit Hours</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="course : ${courses}">
+                <td th:text="${course.code}"></td>
+                <td th:text="${course.title}"></td>
+                <td th:text="${course.description}"></td>
+                <td th:text="${course.creditHours}"></td>
+                <td>
+                    <a th:href="@{'/courses/' + ${course.id}}">View</a>
+                    <form th:action="@{'/courses/' + ${course.id} + '/enroll'}" method="post" style="display:inline" sec:authorize="isAuthenticated()">
+                        <button type="submit">Enroll</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 

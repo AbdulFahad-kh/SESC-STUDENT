@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Profile</h2>
+    <div th:if="${student != null}">
+        <p><strong>Student ID:</strong> <span th:text="${student.studentId}"></span></p>
+        <p><strong>First Name:</strong> <span th:text="${student.firstName}"></span></p>
+        <p><strong>Last Name:</strong> <span th:text="${student.lastName}"></span></p>
+        <a th:href="@{/profile/edit}">Edit Profile</a>
+    </div>
+    <div th:if="${student == null}">
+        <p>No student profile found. Please enroll in a course to create your student account.</p>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 

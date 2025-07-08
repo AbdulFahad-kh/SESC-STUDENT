@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Return Book - Student Portal</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h2>Return a Book</h2>
+    <form th:action="@{/return-book}" method="post">
+        <label for="isbn">Book ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required>
+        <button type="submit">Return Book</button>
+    </form>
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+    <div th:if="${fineAmount}">
+        <div class="alert alert-warning">
+            Fine issued: £<span th:text="${fineAmount}"></span>.<br/>
+            Reference: <span th:text="${fineReference}"></span>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html> 
